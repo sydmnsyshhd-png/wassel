@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b26">
+  <meta name="description" content="وصّل - شحن أذكى، أسرع، وأسهل. اطلب شحنتك وتابعها بسهولة.">
+  <title>وصّل | WASSEL — شحن وتوصيل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#home" aria-label="الصفحة الرئيسية">وصّل<span>.</span></a>
+
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="فتح القائمة" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav" aria-label="القائمة الرئيسية">
+      <a href="#services">خدماتنا</a>
+      <a href="#track">تتبّع شحنتك</a>
+      <a href="#order">اطلب شحنة</a>
+    </nav>
+
+    <a href="#order" class="button button-primary header-cta">ابدأ شحنتك <span>←</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> شحن أذكى لحياة أسرع</div>
+        <h1>شحنتك في<br><span>الطريق الصح.</span></h1>
+        <p class="hero-description">
+          من أول ما تطلب شحنتك لحد ما توصل لباب بيتك، إحنا معاك في كل خطوة.
+          شحن سهل، سريع، ومن غير وجع دماغ.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#order">اطلب شحنتك دلوقتي <span>↗</span></a>
+          <a class="button button-outline" href="#track">تابع شحنتك</a>
+        </div>
+        <div class="hero-note"><span class="note-check">✓</span> تجربة شحن أبسط من أي وقت</div>
+      </div>
+
+      <div class="hero-visual" aria-label="رسم توضيحي لصندوق شحن">
+        <div class="visual-glow"></div>
+        <div class="orbit orbit-outer"></div>
+        <div class="orbit orbit-inner"></div>
+        <div class="package">↗</div>
+        <div class="floating-card floating-card-top">
+          <span class="floating-icon">📦</span>
+          <span><strong>شحنتك جاهزة</strong><small>في طريقها ليك</small></span>
+        </div>
+        <div class="floating-card floating-card-bottom">
+          <span class="floating-icon">⚡</span>
+          <span><strong>أسرع وأسهل</strong><small>من غير تعقيدات</small></span>
+        </div>
+        <span class="spark spark-one">✳</span>
+        <span class="spark spark-two">✦</span>
+      </div>
+    </section>
+
+    <section class="tracking-section" id="track">
+      <div class="tracking-card">
+        <div class="tracking-heading">
+          <span class="tracking-icon">⌕</span>
+          <div>
+            <h2>شحنتك فين دلوقتي؟</h2>
+            <p>اكتب رقم الشحنة واعرف آخر تحديث ليها.</p>
+          </div>
+        </div>
+        <form class="tracking-form" id="trackForm">
+          <label class="sr-only" for="trackingNumber">رقم الشحنة</label>
+          <input id="trackingNumber" name="trackingNumber" type="text" placeholder="اكتب رقم الشحنة هنا... مثال: WSL-123456" autocomplete="off" required>
+          <button class="button button-primary" type="submit">تتبّع الشحنة <span>←</span></button>
+        </form>
+        <p class="form-feedback" id="trackResult" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="services-section section" id="services">
+      <div class="section-heading">
+        <span class="section-kicker">خدماتنا</span>
+        <h2>كل اللي تحتاجه <span>في مكان واحد</span></h2>
+        <p>خدمات شحن مصممة عشان تسهّل يومك وتخلّي كل خطوة أوضح.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon">🚚</div>
+          <span class="service-number">01</span>
+          <h3>شحن سريع</h3>
+          <p>استلام وتوصيل شحنتك بأسرع وقت ممكن، مع متابعة مستمرة لرحلتها.</p>
+        </article>
+        <article class="service-card service-card-featured">
+          <div class="service-icon">📦</div>
+          <span class="service-number">02</span>
+          <h3>شحن آمن</h3>
+          <p>نهتم بتغليف شحنتك وحمايتها من أول الاستلام لحد ما توصل بأمان.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon">📍</div>
+          <span class="service-number">03</span>
+          <h3>تتبّع سهل</h3>
+          <p>اعرف شحنتك وصلت لفين، وتابع خطواتها بكل سهولة ووضوح.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="order-section section" id="order">
+      <div class="order-copy">
+        <span class="section-kicker">جاهز تبدأ؟</span>
+        <h2>خلّي أول شحنة <span>علينا.</span></h2>
+        <p>املأ بياناتك وهنجهز طلب الشحن. خطوات بسيطة، وبداية أسهل لتوصيل شحنتك.</p>
+        <div class="order-points">
+          <div><span>✓</span> بياناتك في نموذج واضح</div>
+          <div><span>✓</span> اختار نوع الشحنة بسهولة</div>
+          <div><span>✓</span> راجع طلبك قبل الإرسال</div>
+        </div>
+      </div>
+
+      <form class="order-form" id="orderForm" novalidate>
+        <div class="form-title">
+          <h3>اطلب شحنتك</h3>
+          <p>املأ البيانات المطلوبة بالأسفل</p>
+        </div>
+
+        <div class="form-row">
+          <label for="customerName">الاسم بالكامل</label>
+          <input id="customerName" name="customerName" type="text" placeholder="اكتب اسمك" autocomplete="name" maxlength="80" required>
+        </div>
+
+        <div class="form-row">
+          <label for="phone">رقم الموبايل</label>
+          <input id="phone" name="phone" type="tel" placeholder="01xxxxxxxxx" autocomplete="tel" inputmode="tel" maxlength="14" required>
+        </div>
+
+        <div class="form-row">
+          <label for="route">منين لفين؟</label>
+          <input id="route" name="route" type="text" placeholder="مثال: القاهرة - الشرقية" maxlength="120" required>
+        </div>
+
+        <div class="form-row">
+          <label for="shipmentType">نوع الشحنة</label>
+          <select id="shipmentType" name="shipmentType">
+            <option value="طرد عادي">طرد عادي</option>
+            <option value="مستندات">مستندات</option>
+            <option value="شحنة كبيرة">شحنة كبيرة</option>
+          </select>
+        </div>
+
+        <button class="button button-primary submit-button" type="submit">إرسال طلب الشحن <span>↗</span></button>
+        <p class="form-feedback" id="orderResult" role="status" aria-live="polite"></p>
+        <p class="form-disclaimer">* احتفظ برقم التتبع اللي هيظهر لك بعد الإرسال.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="logo footer-logo" href="#home">وصّل<span>.</span></a>
+    <p>شحن أذكى، أسرع، وأسهل.</p>
+    <p class="copyright">© <span id="currentYear">2026</span> وصّل. كل الحقوق محفوظة.</p>
+  </footer>
+</body>
+</html>
