@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>وصّل | شحن أذكى، أسرع، أسهل</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <a class="logo" href="#">وصّل<span>.</span></a>
+
+    <nav>
+      <a href="#services">خدماتنا</a>
+      <a href="#track">تتبع شحنتك</a>
+      <a href="#order">اطلب شحنة</a>
+    </nav>
+
+    <a href="#order" class="header-btn">ابدأ شحنتك ←</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="tag">● شحن أذكى لحياة أسرع</div>
+
+        <h1>
+          شحنتك في<br>
+          <span>الطريق الصح.</span>
+        </h1>
+
+        <p>
+          من أول ما تطلب شحنتك لحد ما توصل لباب بيتك،
+          إحنا معاك في كل خطوة. شحن سهل، سريع، ومن غير وجع دماغ.
+        </p>
+
+        <div class="hero-actions">
+          <a class="main-btn" href="#order">اطلب شحنتك دلوقتي ↗</a>
+          <a class="outline-btn" href="#track">تابع شحنتك</a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="orbit">
+          <div class="box-art">📦</div>
+        </div>
+
+        <div class="float-card card-one">
+          <strong>شحنتك جاهزة</strong>
+          في طريقها ليك
+        </div>
+
+        <div class="float-card card-two">
+          <strong>أسرع وأسهل</strong>
+          من غير تعقيدات
+        </div>
+      </div>
+    </section>
+
+    <section class="track" id="track">
+      <h2>شحنتك فين دلوقتي؟</h2>
+
+      <form class="track-form" id="trackForm">
+        <input
+          id="trackingNumber"
+          placeholder="اكتبي رقم الشحنة هنا..."
+          required
+        >
+        <button class="main-btn" type="submit">تتبع الشحنة</button>
+      </form>
+
+      <p id="trackResult" aria-live="polite"></p>
+    </section>
+
+    <section id="services">
+      <div class="section-head">
+        <h2>كل اللي تحتاجيه في مكان واحد</h2>
+        <p>خدمات شحن مصممة عشان تسهّل يومك.</p>
+      </div>
+
+      <div class="services">
+        <article class="service">
+          <div class="service-icon">🚚</div>
+          <h3>شحن سريع</h3>
+          <p>استلام وتوصيل شحنتك بأسرع وقت ممكن، مع متابعة مستمرة.</p>
+        </article>
+
+        <article class="service">
+          <div class="service-icon">📦</div>
+          <h3>شحن آمن</h3>
+          <p>نهتم بتغليف شحنتك وحمايتها من أول الاستلام لحد التسليم.</p>
+        </article>
+
+        <article class="service">
+          <div class="service-icon">📍</div>
+          <h3>تتبع مباشر</h3>
+          <p>اعرفي شحنتك وصلت لفين، وتابعي خطواتها بكل سهولة.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="order" id="order">
+      <div>
+        <div class="tag">جاهزة تبدأي؟</div>
+        <h2>خلّي أول شحنة علينا.</h2>
+        <p>
+          ابعتي بياناتك وهنجهز طلبك.
+          ابدئي دلوقتي وخلي التوصيل علينا.
+        </p>
+      </div>
+
+      <form class="order-form" id="orderForm">
+        <label>
+          اسمك
+          <input id="customerName" placeholder="اكتبي اسمك" required>
+        </label>
+
+        <label>
+          رقم الموبايل
+          <input id="phone" type="tel" placeholder="01xxxxxxxxx" required>
+        </label>
+
+        <label>
+          منين لفين؟
+          <input id="route" placeholder="مثال: القاهرة - الشرقية" required>
+        </label>
+
+        <label>
+          نوع الشحنة
+          <select id="shipmentType">
+            <option>طرد عادي</option>
+            <option>مستندات</option>
+            <option>شحنة كبيرة</option>
+          </select>
+        </label>
+
+        <button class="main-btn" type="submit">إرسال طلب الشحن ↗</button>
+
+        <p id="orderResult" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#">وصّل<span>.</span></a>
+    <p>شحن أذكى، أسرع، أسهل.</p>
+    <p>© 2026 وصّل. كل الحقوق محفوظة.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
