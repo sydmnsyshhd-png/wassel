@@ -193,3 +193,500 @@
       <div class="section-heading">
 
         <span class="eyebrow">كل حاجة أسهل</span>
+
+        <h2>إنت محتاج إيه النهارده؟</h2>
+
+        <p>
+          اختار طريقك، وإحنا هنكمّل معاك.
+        </p>
+
+      </div>
+
+      <div class="choice-grid">
+
+        <a class="choice-card order-choice" href="#order">
+
+          <span class="choice-icon">🛍️</span>
+
+          <span class="choice-tag">للأفراد</span>
+
+          <h3>عايز أطلب حاجة</h3>
+
+          <p>
+            اكتب طلبك حتى لو مش موجود في أي قائمة.
+            إحنا نوصل لأي طلب داخل الصالحية الجديدة.
+          </p>
+
+          <b>اطلب الآن <span>←</span></b>
+
+        </a>
+
+        <a class="choice-card shop-choice" href="#merchant">
+
+          <span class="choice-icon">🏪</span>
+
+          <span class="choice-tag">لأصحاب المحلات</span>
+
+          <h3>عندي محل أو مشروع</h3>
+
+          <p>
+            اعرض منتجاتك وخلي عملاء أكتر يلاقوك،
+            واستقبل طلباتك من خلال وصّل.
+          </p>
+
+          <b>سجّل محلك <span>←</span></b>
+
+        </a>
+
+        <a class="choice-card rider-choice" href="#rider">
+
+          <span class="choice-icon">🛵</span>
+
+          <span class="choice-tag">للكباتن</span>
+
+          <h3>عايز أشتغل مندوب</h3>
+
+          <p>
+            انضم لفريق المندوبين وساعد الناس
+            توصل احتياجاتها بسهولة.
+          </p>
+
+          <b>انضم لينا <span>←</span></b>
+
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- نموذج طلب العميل -->
+    <section class="order-section section" id="order">
+
+      <div class="section-heading">
+
+        <span class="eyebrow">اطلبها.. مهما كانت</span>
+
+        <h2>طلبك من غير تعقيد</h2>
+
+        <p>
+          قولنا محتاج إيه، ومنين، وهنرجعلك لتأكيد التفاصيل.
+        </p>
+
+      </div>
+
+      <div class="form-layout">
+
+        <div class="form-aside">
+
+          <span class="big-emoji">🧺</span>
+
+          <h3>
+            من الطعمية<br>
+            لحد طلبات البيت.
+          </h3>
+
+          <p>
+            مش لازم تختار من قائمة محددة.
+            اكتب أي حاجة محتاجها، وبندق هيساعدك تكمل.
+          </p>
+
+          <div class="aside-note">
+            💡
+            <span>
+              اكتب تفاصيل واضحة عشان نقدر نخدمك أسرع.
+            </span>
+          </div>
+
+        </div>
+
+        <form class="panel form-grid" id="orderForm">
+
+          <label>
+            اسمك بالكامل
+            <input
+              name="customer_name"
+              required
+              placeholder="مثال: سارة محمد"
+            >
+          </label>
+
+          <label>
+            رقم الموبايل
+            <input
+              name="phone"
+              required
+              inputmode="tel"
+              placeholder="01xxxxxxxxx"
+            >
+          </label>
+
+          <label class="full">
+            عنوان الاستلام بالتفصيل
+            <input
+              name="address"
+              required
+              placeholder="المنطقة / الشارع / علامة مميزة"
+            >
+          </label>
+
+          <label>
+            نوع الطلب
+            <select name="category">
+              <option>أكل ومشروبات</option>
+              <option>بقالة وسوبر ماركت</option>
+              <option>صيدلية ومستلزمات</option>
+              <option>ملابس وإكسسوارات</option>
+              <option>أوراق ومشاوير</option>
+              <option>طلب مخصص</option>
+            </select>
+          </label>
+
+          <label>
+            منين نجيبه؟
+            <input
+              name="shop_name"
+              placeholder="اسم المحل أو المكان (اختياري)"
+            >
+          </label>
+
+          <label class="full">
+            اكتب طلبك بالتفصيل
+            <textarea
+              name="details"
+              required
+              rows="4"
+              placeholder="مثال: 2 سندوتش طعمية، واحد من غير مخلل.."
+            ></textarea>
+          </label>
+
+          <label class="full">
+            ملاحظات إضافية (اختياري)
+            <textarea
+              name="notes"
+              rows="2"
+              placeholder="أي تفاصيل تساعدنا في تنفيذ طلبك"
+            ></textarea>
+          </label>
+
+          <button class="btn btn-primary full submit-btn" type="submit">
+            إرسال الطلب <span>←</span>
+          </button>
+
+          <p class="form-hint full">
+            بالضغط على إرسال، هنتواصل معاك لتأكيد الطلب والتكلفة قبل التنفيذ.
+          </p>
+
+        </form>
+
+      </div>
+
+    </section>
+
+    <!-- المتاجر -->
+    <section class="section shops-section" id="shops">
+
+      <div class="section-heading">
+
+        <span class="eyebrow">منطقتك في مكان واحد</span>
+
+        <h2>اكتشف محلات الصالحية</h2>
+
+        <p>
+          المحلات اللي هتنضم لوصّل هتظهر هنا.
+        </p>
+
+      </div>
+
+      <div class="shop-toolbar">
+
+        <div class="searchbox">
+          ⌕
+          <input
+            id="shopSearch"
+            placeholder="دور على محل أو منتج..."
+          >
+        </div>
+
+        <span class="demo-label">عرض تجريبي</span>
+
+      </div>
+
+      <div class="product-grid" id="productGrid">
+
+        <article class="product-card">
+
+          <div class="product-art food-art">🥙</div>
+
+          <div class="product-info">
+            <small>أكل شرقي</small>
+            <h3>طعمية وفطار</h3>
+            <p>مثال لعرض منتجات المحلات</p>
+            <b>اطلب من وصّل</b>
+          </div>
+
+        </article>
+
+        <article class="product-card">
+
+          <div class="product-art market-art">🥛</div>
+
+          <div class="product-info">
+            <small>بقالة</small>
+            <h3>احتياجات البيت</h3>
+            <p>كل الأساسيات في مشوار واحد</p>
+            <b>اطلب من وصّل</b>
+          </div>
+
+        </article>
+
+        <article class="product-card">
+
+          <div class="product-art pharmacy-art">🧴</div>
+
+          <div class="product-info">
+            <small>مستلزمات</small>
+            <h3>طلبات يومية</h3>
+            <p>اطلب اللي ناقصك بسهولة</p>
+            <b>اطلب من وصّل</b>
+          </div>
+
+        </article>
+
+      </div>
+
+      <p class="empty-search" id="emptySearch" hidden>
+        مفيش نتائج مطابقة. جرّب كلمة تانية.
+      </p>
+
+    </section>
+
+    <!-- تسجيل المحلات -->
+    <section class="merchant-section section" id="merchant">
+
+      <div class="section-heading">
+
+        <span class="eyebrow">خلّي محلك أقرب للناس</span>
+
+        <h2>سجّل محلك على وصّل</h2>
+
+        <p>
+          اعرض نشاطك ومنتجاتك، وابدأ استقبل طلبات من عملاء جدد.
+        </p>
+
+      </div>
+
+      <div class="panel merchant-panel">
+
+        <div class="merchant-intro">
+
+          <div class="merchant-icon">🏬</div>
+
+          <h3>محلك يستاهل ينتشر</h3>
+
+          <p>
+            املأ بياناتك، وبعد مراجعة الطلب هنتواصل معاك لتفعيل صفحة محلك.
+          </p>
+
+        </div>
+
+        <form class="form-grid" id="merchantForm">
+
+          <label>
+            اسم صاحب المحل
+            <input
+              name="owner_name"
+              required
+              placeholder="الاسم بالكامل"
+            >
+          </label>
+
+          <label>
+            رقم التواصل
+            <input
+              name="phone"
+              required
+              inputmode="tel"
+              placeholder="01xxxxxxxxx"
+            >
+          </label>
+
+          <label>
+            اسم المحل
+            <input
+              name="store_name"
+              required
+              placeholder="اسم النشاط التجاري"
+            >
+          </label>
+
+          <label>
+            نوع النشاط
+            <select name="category">
+              <option>مطعم / كافيه</option>
+              <option>بقالة / سوبر ماركت</option>
+              <option>صيدلية</option>
+              <option>ملابس / إكسسوارات</option>
+              <option>أخرى</option>
+            </select>
+          </label>
+
+          <label class="full">
+            عنوان المحل
+            <input
+              name="address"
+              required
+              placeholder="العنوان داخل الصالحية الجديدة"
+            >
+          </label>
+
+          <label class="full">
+            وصف المنتجات أو الخدمات
+            <textarea
+              name="description"
+              rows="3"
+              placeholder="احكيلنا بتقدم إيه..."
+            ></textarea>
+          </label>
+
+          <button class="btn btn-dark full" type="submit">
+            تسجيل المحل <span>←</span>
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+    <!-- تسجيل المندوبين -->
+    <section class="rider-section section" id="rider">
+
+      <div class="rider-copy">
+
+        <span class="eyebrow">خليك جزء من الحكاية</span>
+
+        <h2>مع وصّل.. كل مشوار بيفرق.</h2>
+
+        <p>
+          لو عندك وسيلة مواصلات وبتحب تساعد الناس،
+          سيب بياناتك وفريقنا هيتواصل معاك.
+        </p>
+
+      </div>
+
+      <form class="rider-form" id="riderForm">
+
+        <input
+          name="name"
+          required
+          placeholder="اسمك"
+        >
+
+        <input
+          name="phone"
+          required
+          inputmode="tel"
+          placeholder="رقم الموبايل"
+        >
+
+        <select name="vehicle">
+          <option>موتوسيكل</option>
+          <option>عجلة</option>
+          <option>سيارة</option>
+          <option>وسيلة أخرى</option>
+        </select>
+
+        <button class="btn btn-primary" type="submit">
+          قدّم كمندوب ←
+        </button>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+
+    <a class="brand footer-brand" href="#home">
+
+      <span class="logo-mark">W</span>
+
+      <span>
+        WASSEL
+        <small>وصّلها لحد عندك</small>
+      </span>
+
+    </a>
+
+    <p>كل طلب ليه طريق.. وطريقه وصّل.</p>
+
+    <small>
+      © 2026 WASSEL. جميع الحقوق محفوظة.
+    </small>
+
+  </footer>
+
+  <!-- مساعد بندق -->
+  <button class="bot-launcher" id="botLauncher" aria-label="اسأل بندق">
+    🐿️
+    <span>اسأل بندق</span>
+  </button>
+
+  <aside class="bot-panel" id="botPanel" aria-label="مساعد بندق">
+
+    <div class="bot-head">
+
+      <span>
+        🐿️ بندق
+        <small>مساعدك في وصّل</small>
+      </span>
+
+      <button id="botClose" aria-label="إغلاق">×</button>
+
+    </div>
+
+    <div class="bot-messages" id="botMessages">
+
+      <div class="bot-msg">
+        أهلاً بيك! أنا بندق 🐿️
+        اسألني عن الطلب أو تسجيل المحل، وأنا أساعدك.
+      </div>
+
+    </div>
+
+    <div class="bot-input">
+
+      <input
+        id="botQuestion"
+        placeholder="اكتب سؤالك..."
+      >
+
+      <button id="botSend">إرسال</button>
+
+    </div>
+
+    <small class="bot-disclaimer">
+      بندق مساعد إرشادي بسيط، مش خدمة دعم مباشر.
+    </small>
+
+  </aside>
+
+  <!-- رسالة نجاح -->
+  <div class="toast" id="toast">
+
+    <span>✓</span>
+
+    <div>
+      <b>تم إرسال البيانات بنجاح!</b>
+      <small>فريق وصّل هيتواصل معاك قريبًا.</small>
+    </div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
