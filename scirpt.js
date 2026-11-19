@@ -1,76 +1,403 @@
-/* =========================
-   وصّل | Fixes
-   الصق هذا الجزء في آخر ملف الـ CSS (بعد كل الأكواد الموجودة)
-   ========================= */
+// ==================================
+// WASSEL - MAIN JAVASCRIPT
+// ==================================
 
-/* 1) textarea كان ناقص من إعادة ضبط الخط (لو حقل العنوان textarea) */
-textarea { font: inherit; }
 
-/* 2) دعم Safari للـ blur في الهيدر */
-.site-header {
-  -webkit-backdrop-filter: blur(14px);
+// 1. SUPABASE CONFIGURATION
+
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+const supabaseReady =
+  SUPABASE_URL.startsWith("https://") &&
+  !SUPABASE_URL.includes("YOUR_") &&
+  !SUPABASE_ANON_KEY.includes("YOUR_");
+
+const db =
+  supabaseReady && window.supabase
+    ? window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      )
+    : null;
+
+
+// 2. INTRO ANIMATION
+
+window.addEventListener("load", () => {
+
+  setTimeout(() => {
+
+    document
+      .getElementById("intro")
+      .classList.add("hide");
+
+  }, 1350);
+
+});
+
+
+// 3. SUCCESS MESSAGE
+
+const toast = document.getElementById("toast");
+
+let toastTimer;
+
+function showToast(
+  message = "فريق وصّل هيتواصل معاك قريبًا."
+) {
+
+  toast.querySelector("small").textContent = message;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(() => {
+
+    toast.classList.remove("show");
+
+  }, 4200);
+
 }
 
-/* 3) الـ checkbox جوه .form-row كان بياخد padding/border/shadow الخاصة بحقول النص */
-.form-row input[type="checkbox"],
-.form-row input[type="file"] {
-  padding: 0;
-  box-shadow: none;
-}
-.worker-form input[type="file"] {
-  padding: 11px;
-}
 
-/* 4) textarea بنفس شكل باقي الحقول */
-.form-row textarea,
-.worker-form textarea {
-  width: 100%;
-  min-width: 0;
-  min-height: 90px;
-  padding: 12px 14px;
-  color: var(--dark);
-  background: #fcfdfb;
-  border: 1px solid var(--line);
-  border-radius: 11px;
-  outline: none;
-  resize: vertical;
-  font-size: 13px;
-  transition: border-color .2s ease, box-shadow .2s ease;
-}
-.form-row textarea:focus,
-.worker-form textarea:focus {
-  border-color: var(--green-deep);
-  box-shadow: 0 0 0 3px rgba(107, 158, 58, .13);
-}
+// 4. SAVE FORM DATA
 
-/* 5) زر "outline" أبيض، فبيختفي جوه صندوق العقد الفاتح */
-.contract-box .button-outline {
-  color: var(--dark);
-  border-color: rgba(16, 43, 38, .35);
-}
-.contract-box .button-outline:hover {
-  background: rgba(16, 43, 38, .06);
-}
+async function saveForm(
+  event,
+  table,
+  successMessage
+) {
 
-/* 6) مسافة الزر في اختيار الملف تتماشى مع اتجاه الصفحة (RTL/LTR) */
-.worker-form input[type="file"]::file-selector-button {
-  margin-left: 0;
-  margin-inline-end: 10px;
-}
+  event.preventDefault();
 
-/* 7) إضافة رابط "انضم لنا" في القائمة كانت بتزحم الهيدر في الشاشات المتوسطة */
-@media (max-width: 900px) {
-  .main-nav { gap: 18px; font-size: 13px; }
-}
+  const form = event.currentTarget;
 
-/* 8) الموبايل: لازم حجم الخط 16px في الحقول، غير كده iPhone بيعمل zoom تلقائي عند الضغط */
-@media (max-width: 700px) {
-  .form-row input,
-  .form-row select,
-  .form-row textarea,
-  .worker-form input:not([type="checkbox"]):not([type="file"]),
-  .worker-form select,
-  .worker-form textarea {
-    font-size: 16px;
+  const button = form.querySelector(
+    'button[type="submit"]'
+  );
+
+  const original = button.textContent;
+
+  button.disabled = true;
+
+  button.textContent = "جاري الإرسال...";
+
+  const data = Object.fromEntries(
+    new FormData(form).entries()
+  );
+
+  try {
+
+    if (!db) {
+
+      // وضع المعاينة فقط
+      // البيانات لن تُحفظ في قاعدة البيانات.
+
+      console.info(
+        "Supabase not configured. Form preview data:",
+        data
+      );
+
+      showToast(
+        "تم اختبار النموذج. اربطي Supabase لتخزين البيانات فعليًا."
+      );
+
+    } else {
+
+      const { error } = await db
+        .from(table)
+        .insert([data]);
+
+      if (error) throw error;
+
+      showToast(successMessage);
+
+    }
+
+    form.reset();
+
+  } catch (error) {
+
+    console.error(error);
+
+    showToast(
+      "حصلت مشكلة في الإرسال. راجعي إعدادات Supabase وحاولي مرة تانية."
+    );
+
+  } finally {
+
+    button.disabled = false;
+
+    button.textContent = original;
+
   }
+
 }
+
+
+// 5. CUSTOMER ORDER FORM
+
+document
+  .getElementById("orderForm")
+  .addEventListener("submit", (event) => {
+
+    saveForm(
+      event,
+      "orders",
+      "تم استلام طلبك، وهنكلمك لتأكيد التفاصيل."
+    );
+
+  });
+
+
+// 6. MERCHANT REGISTRATION FORM
+
+document
+  .getElementById("merchantForm")
+  .addEventListener("submit", (event) => {
+
+    saveForm(
+      event,
+      "stores",
+      "طلب تسجيل محلك وصلنا، وهنراجع البيانات ونتواصل معاك."
+    );
+
+  });
+
+
+// 7. DELIVERY RIDER FORM
+
+document
+  .getElementById("riderForm")
+  .addEventListener("submit", (event) => {
+
+    saveForm(
+      event,
+      "riders",
+      "طلب انضمامك وصلنا، وهنكلمك قريبًا."
+    );
+
+  });
+
+
+// 8. MOBILE MENU
+
+const menuBtn = document.getElementById("menuBtn");
+
+menuBtn.addEventListener("click", () => {
+
+  document
+    .querySelector(".topbar nav")
+    .classList.toggle("open");
+
+});
+
+document
+  .querySelectorAll(".topbar nav a")
+  .forEach((link) => {
+
+    link.addEventListener("click", () => {
+
+      document
+        .querySelector(".topbar nav")
+        .classList.remove("open");
+
+    });
+
+  });
+
+
+// 9. PRODUCT SEARCH
+
+document
+  .getElementById("shopSearch")
+  .addEventListener("input", (event) => {
+
+    const query = event.target.value
+      .trim()
+      .toLowerCase();
+
+    let visible = 0;
+
+    document
+      .querySelectorAll(".product-card")
+      .forEach((card) => {
+
+        const match = card.textContent
+          .toLowerCase()
+          .includes(query);
+
+        card.style.display = match ? "" : "none";
+
+        if (match) visible++;
+
+      });
+
+    document
+      .getElementById("emptySearch")
+      .hidden = visible !== 0;
+
+  });
+
+
+// ==================================
+// 10. BANDUQ ASSISTANT 🐿️
+// ==================================
+
+const botPanel = document.getElementById("botPanel");
+
+document
+  .getElementById("botLauncher")
+  .addEventListener("click", () => {
+
+    botPanel.classList.toggle("open");
+
+  });
+
+document
+  .getElementById("botClose")
+  .addEventListener("click", () => {
+
+    botPanel.classList.remove("open");
+
+  });
+
+
+// BANDUQ CHAT FUNCTION
+
+function askBanduq() {
+
+  const input = document.getElementById("botQuestion");
+
+  const question = input.value.trim();
+
+  if (!question) return;
+
+  const messages = document.getElementById("botMessages");
+
+
+  // رسالة المستخدم
+
+  const user = document.createElement("div");
+
+  user.className = "bot-msg user";
+
+  user.textContent = question;
+
+  messages.appendChild(user);
+
+
+  // تجهيز الإجابة
+
+  const q = question.toLowerCase();
+
+  let answer =
+    "تقدر تملأ نموذج «اطلب أي حاجة» وتكتب كل التفاصيل، وفريق وصّل هيتواصل معاك لتأكيد الطلب.";
+
+
+  // أسئلة المحلات
+
+  if (
+    q.includes("محل") ||
+    q.includes("متجر") ||
+    q.includes("تسجيل")
+  ) {
+
+    answer =
+      "لو عندك محل، انزل لقسم «سجّل محلك على وصّل»، واملأ اسم النشاط ورقم التواصل والعنوان ووصف المنتجات. هنراجع طلبك ونتواصل معاك.";
+
+  }
+
+
+  // أسئلة المندوبين
+
+  else if (
+    q.includes("مندوب") ||
+    q.includes("شغل") ||
+    q.includes("اشتغل")
+  ) {
+
+    answer =
+      "أهلاً بيك في فريق وصّل! افتح قسم «عايز أشتغل مندوب»، واكتب اسمك ورقمك ووسيلة التوصيل.";
+
+  }
+
+
+  // أسئلة الأسعار
+
+  else if (
+    q.includes("سعر") ||
+    q.includes("تكلفة") ||
+    q.includes("فلوس")
+  ) {
+
+    answer =
+      "تكلفة التوصيل بتتحدد حسب تفاصيل الطلب والمسافة، وفريقنا هيأكد معاك السعر قبل تنفيذ الطلب.";
+
+  }
+
+
+  // أسئلة تتبع الطلبات
+
+  else if (
+    q.includes("تتبع") ||
+    q.includes("طلب")
+  ) {
+
+    answer =
+      "بعد إرسال الطلب، فريق وصّل هيتواصل معاك لتأكيده. قريبًا هنضيف تتبع مباشر لكل طلب.";
+
+  }
+
+
+  // عرض رد بندق
+
+  const reply = document.createElement("div");
+
+  reply.className = "bot-msg";
+
+  reply.textContent = answer;
+
+  messages.appendChild(reply);
+
+
+  // مسح السؤال
+
+  input.value = "";
+
+
+  // النزول لآخر المحادثة
+
+  messages.scrollTop = messages.scrollHeight;
+
+}
+
+
+// زر إرسال رسالة بندق
+
+document
+  .getElementById("botSend")
+  .addEventListener("click", askBanduq);
+
+
+// إرسال باستخدام Enter
+
+document
+  .getElementById("botQuestion")
+  .addEventListener("keydown", (event) => {
+
+    if (event.key === "Enter") {
+
+      askBanduq();
+
+    }
+
+  });
+
+
+// ==================================
+// END OF WASSEL JAVASCRIPT
+// ==================================
